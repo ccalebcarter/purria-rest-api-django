@@ -9,15 +9,13 @@ services:
     ports:
       - 8000:8000
     environment: #env variables app and db
-      - SECRET_KEY=mysecretkey
-      - DEBUG=1
-      - DB_HOST=db
-      - DB_NAME=devdb
-      - DB_USER=devuser
-      - DB_PASS=changeme
-      - DB_PORT=5432
-    env_file:
-      - ./.env.dev
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_PORT=${DB_PORT}
     depends_on:
       - db
 
@@ -26,9 +24,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment: # env variables for local db config
-      - POSTGRES_DB=devdb
-      - POSTGRES_USER=devuser
-      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
 
 volumes:
   postgres_data:
