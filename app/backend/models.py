@@ -1,12 +1,14 @@
+"""
+Models for backend app.
+"""
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.postgres.fields import ArrayField
 import uuid
 
-# Create your models here.
- 
 class Drone(models.Model):
-   # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    """ Drone model representation"""
     name = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     battery_capacity = models.IntegerField(default=100)
@@ -20,7 +22,7 @@ class Drone(models.Model):
      
  
 class DroneTeam(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    """ DroneTeam model representation"""
     name = models.CharField(max_length=255)
     drones = ArrayField(
         models.IntegerField(),
@@ -33,13 +35,13 @@ class DroneTeam(models.Model):
         return self.name
         
 class Contract(models.Model):
+    """ Contract model representation"""
     STATUS_CHOICES = (
         ('active', 'Active'),
         ('completed', 'Completed'),
         ('failed', 'Failed')
     )
 
-   # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default="none")
     description = models.CharField(max_length=255,default="none")
     requirements = models.JSONField(default=dict, blank=True,null=True)
@@ -58,7 +60,7 @@ class Contract(models.Model):
 
 
 class TulipField(models.Model):
-   # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    """ TulipField model representation"""
     size = models.FloatField()
     soil_type = models.CharField(max_length=50)
     contract_id = models.IntegerField()
@@ -68,7 +70,7 @@ class TulipField(models.Model):
         return str(self.contract_id)
     
 class TulipPlant(models.Model):
-    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    """ TulipPlant model representation"""
     tulip_type = models.CharField(max_length=50)
     growth_stage = models.IntegerField()
     health = models.FloatField()
@@ -78,7 +80,7 @@ class TulipPlant(models.Model):
         return str(self.tulip_type)
     
 class Player(models.Model):
-    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    """Player model representation"""
     username = models.CharField(max_length=50)
     credits = models.IntegerField()
     reputation = models.JSONField(default=dict, blank=True,null=True)
