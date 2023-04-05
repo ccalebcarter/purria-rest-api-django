@@ -3,9 +3,9 @@ steps for cloning and running the repo localy on docker container
 
 
 - create folder where u want to clone the repository
-- cd <name of the created folder>
+- cd (name of the created folder)
 - git clone https://github.com/martinstojcevski95/purria-rest-api-django.git into the <create folder path>
-- code . <to open vs code>, if it doesnt open vs code, open it manually and open : View -> Command Pallete and type shell command install 'code'command in PATH
+- code . (to open vs code), if it doesnt open vs code, open it manually and open : View -> Command Pallete and type shell command install 'code'command in PATH
 - in vs code open the terminal and cd into purria-rest-api-django folder, then write set -a and source .env.dev
 - docker-compose build (to build the docker images)
 - docker-compose up -d (to start the containers and the db)
